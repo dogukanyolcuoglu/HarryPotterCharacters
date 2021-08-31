@@ -10,6 +10,7 @@ import UIKit
 final class CharacterListViewController: UIViewController, Storyboarded {
     
     // MARK: - Variables
+    
     var viewModel: CharacterListViewModel!
     
     // MARK: - Outlets
