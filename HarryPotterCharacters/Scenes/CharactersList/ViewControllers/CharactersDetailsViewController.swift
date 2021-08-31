@@ -10,7 +10,7 @@ import SDWebImage
 
 final class CharactersDetailsViewController: UIViewController, Storyboarded{
     
-    // MARK: - Variables
+    // MARK: - Variables & View
     
     var viewModel: CharacterDetailsViewModel!
     var favButton = UIBarButtonItem()
