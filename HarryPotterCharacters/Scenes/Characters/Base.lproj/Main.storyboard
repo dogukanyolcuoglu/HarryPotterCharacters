@@ -102,10 +102,10 @@
             </objects>
             <point key="canvasLocation" x="615.20000000000005" y="109.29535232383809"/>
         </scene>
-        <!--Characters Details View Controller-->
+        <!--Character Details View Controller-->
         <scene sceneID="2la-Rd-5t4">
             <objects>
-                <viewController storyboardIdentifier="CharactersDetailsViewController" id="vwc-dP-vrB" customClass="CharactersDetailsViewController" customModule="HarryPotterCharacters" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CharacterDetailsViewController" id="vwc-dP-vrB" customClass="CharacterDetailsViewController" customModule="HarryPotterCharacters" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="L1L-9I-dt8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

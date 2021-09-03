@@ -21,7 +21,7 @@ final class CharacterDetailsCoordinator: NSObject, Coordinator, UINavigationCont
 
     func start() {
         navigationController.delegate = self
-        let characterDetailsVC = CharactersDetailsViewController.instantiate()
+        let characterDetailsVC = CharacterDetailsViewController.instantiate()
         let characterDetailsViewModel = CharacterDetailsViewModel(character: data!)
         characterDetailsViewModel.coordinator = self
         characterDetailsVC.viewModel = characterDetailsViewModel

@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-final class CharactersDetailsViewController: UIViewController, Storyboarded{
+final class CharacterDetailsViewController: UIViewController, Storyboarded{
     
     // MARK: - Variables & View
     
