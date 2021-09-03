@@ -8,9 +8,6 @@
 import UIKit
 
 final class CharacterListCell: UITableViewCell {
-
-    // MARK: - ViewModel
-    var viewModel: CharacterListCellViewModel!
     
     // MARK: - IBOutlets
     @IBOutlet weak var imageview: UIImageView!
@@ -31,7 +28,7 @@ final class CharacterListCell: UITableViewCell {
     
     // MARK: - Functions
     
-    public func configureCharacter(with viewModel: CharacterListCellViewModel) {
+    public func configureCharacter(with viewModel: CharacterCellViewModel) {
         // Character's datas setting
         characterName.text = "Name: \(viewModel.name)"
         characterSpecies.text = "Species: \(viewModel.species)"

@@ -6,7 +6,8 @@ target 'HarryPotterCharacters' do
   use_frameworks!
 
 pod 'SDWebImage', '~> 5.0'
-
+pod 'RxSwift', '~> 5'
+pod 'RxCocoa', '~> 5'
   # Pods for HarryPotterCharacters
 
 end

@@ -7,11 +7,12 @@
 
 import Foundation
 
-final class CharacterListCellViewModel {
+final class CharacterCellViewModel {
     var name: String
     var species: String
     var image: String
     var names: [String]
+    
     
     init(character: Character, names: [String]) {
         self.name = character.name

@@ -70,6 +70,7 @@ final class CharacterDetailsViewModel: ICharacterDetailsViewModel {
 // MARK: - Protocols
 
 protocol ICharacterDetailsViewModel {
+    func tappedFavButton()
     func isFavorite() -> Bool
     func getUpdatedFavorites()
 }

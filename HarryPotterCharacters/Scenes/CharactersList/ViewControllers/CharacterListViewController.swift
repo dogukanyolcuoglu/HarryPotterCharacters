@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import RxSwift
 
 final class CharacterListViewController: UIViewController, Storyboarded {
     
     // MARK: - Variables
     
+    let disposeBag = DisposeBag()
     var viewModel: CharacterListViewModel!
     
     // MARK: - Outlets
@@ -38,23 +40,20 @@ final class CharacterListViewController: UIViewController, Storyboarded {
     }
     
     func reloadFavoritesClosure() {
+        // To do binding
         viewModel.fetchCharacterFromCoreData()
-        viewModel.names.bind { [weak self] _ in
-            guard let self = self else {return}
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     }
     
     private func reloadCharactersClosure() {
         viewModel.fetchDataFromAPI()
-        viewModel.characters.bind { [weak self] _ in
-            guard let self = self else {return}
+        viewModel.characters.drive(onNext: { [unowned self] _ in
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-        }
+        }).disposed(by: disposeBag)
     }
     
     private func configuration() {

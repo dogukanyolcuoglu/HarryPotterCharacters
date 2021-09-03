@@ -8,15 +8,15 @@
 import Foundation
 
 final class APICaller {
-
+    
     struct Constants {
         static let url = "http://hp-api.herokuapp.com/api/characters"
     }
     
     // Fetch Data from API
-    func downloadCharacters(completion: @escaping ([Character]?) -> Void)  {
+    func downloadCharacters(completion: @escaping ([Character]?) -> Void) {
         
-        URLSession.shared.dataTask(with: URL(string: Constants.url)!) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: URL(string: Constants.url)!) { (data, response, error) in
             
             guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
                 print("HTTP error!")
@@ -35,7 +35,8 @@ final class APICaller {
                     print(error.localizedDescription)
                 }
             }
-            
-        }.resume()
-    }    
+        }
+        task.resume()
+    }
+    
 }

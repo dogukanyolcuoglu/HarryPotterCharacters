@@ -211,16 +211,16 @@
     </scenes>
     <designables>
         <designable name="5Vm-To-IcB">
-            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+            <size key="intrinsicContentSize" width="57.5" height="20.5"/>
         </designable>
         <designable name="agA-yd-Rrs">
-            <size key="intrinsicContentSize" width="49.5" height="20.5"/>
+            <size key="intrinsicContentSize" width="65.5" height="20.5"/>
         </designable>
         <designable name="fzf-oP-UIw">
-            <size key="intrinsicContentSize" width="61" height="20.5"/>
+            <size key="intrinsicContentSize" width="77" height="20.5"/>
         </designable>
         <designable name="rgn-Sc-2k3">
-            <size key="intrinsicContentSize" width="101" height="20.5"/>
+            <size key="intrinsicContentSize" width="117" height="20.5"/>
         </designable>
     </designables>
     <resources>

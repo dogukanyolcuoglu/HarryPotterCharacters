@@ -5,18 +5,26 @@
 //  Created by Dogukan Yolcuoglu on 16.08.2021.
 //
 
-import UIKit
-import Foundation
+import RxCocoa
 
 final class CharacterListViewModel: ICharacterListViewModel {
-    // MARK: - Variables & Properties
+    // MARK: - Variables
     
     private var apiService: APICaller!
     private lazy var coreData: CoreDataManager = CoreDataManager()
     var coordinator: CharacterListCoordinator?
-    var characters: Observable<[Character]> = Observable([])
-    var names: Observable<[String]> = Observable([])
-    private(set) var chosenNames = [String]()
+    private var names = [String]()
+    private var _characters: BehaviorRelay<[Character]> = BehaviorRelay<[Character]>(value: [])
+    
+    // MARK: - Properties
+    
+    var characters: Driver<[Character]> {
+        return _characters.asDriver()
+    }
+    
+    var numberRowsInSection: Int {
+        return _characters.value.count
+    }
     
     // MARK: - Initializer
     
@@ -27,43 +35,40 @@ final class CharacterListViewModel: ICharacterListViewModel {
     // MARK: - Functions
     
     func didSelectRow(_ index: Int) {
-        coordinator?.startCharacterDetails(data: characters.value[index])
-    }
-   
-    func fetchDataFromAPI() {
-        apiService.downloadCharacters { [weak self] (characters) in
-            guard let self = self else {return}
-            guard let characters = characters else {return}
-            self.characters.value = characters
-        }
+        coordinator?.startCharacterDetails(data: _characters.value[index])
     }
     
-    var numberRowsInSection: Int {
-        return characters.value.count
-    }
-        
-    func viewModelForCell(_ index: Int) -> CharacterListCellViewModel {
-        return CharacterListCellViewModel(character: characters.value[index], names: chosenNames)
+    func fetchDataFromAPI() {
+        // To do data fetch
+        apiService.downloadCharacters { [weak self] datas in
+            guard let datas = datas else {return}
+            guard let self = self else {return}
+            self._characters.accept(datas)
+        }
     }
     
     func fetchCharacterFromCoreData() {
         let characters = coreData.fetchCharacters()
         print("Characters: \(characters)")
-        self.chosenNames.removeAll(keepingCapacity: false)
+        self.names.removeAll(keepingCapacity: false)
         for data in characters {
             if let name = data.value(forKey: "name") as? String {
-                chosenNames.append(name)
+                names.append(name)
             }
         }
-        self.names.value = chosenNames
     }
+    
+    func viewModelForCell(_ index: Int) -> CharacterCellViewModel {
+        return CharacterCellViewModel(character: _characters.value[index], names: names)
+    }
+    
 }
-
 
 // MARK: - Protocols
 
 protocol ICharacterListViewModel {
-    func viewModelForCell(_ index: Int) -> CharacterListCellViewModel
-    func fetchCharacterFromCoreData()
+    func didSelectRow(_ index: Int)
     func fetchDataFromAPI()
+    func viewModelForCell(_ index: Int) -> CharacterCellViewModel
+    func fetchCharacterFromCoreData()
 }
